@@ -34,4 +34,14 @@ const createNotesBulk = async (req , res)=>{
     }
 
 }
-module.exports = {createNotes,createNotesBulk }  
+
+const getNotes = async(req , res)=>{
+    try{
+        const note = await Note.find({});
+        res.status(200).json({"data" : note , success : true})
+    }
+    catch(error){
+        res.status(500).json({error : error.message , success : false})
+    }
+}
+module.exports = {createNotes,createNotesBulk , getNotes }  
