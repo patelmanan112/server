@@ -44,4 +44,15 @@ const getNotes = async(req , res)=>{
         res.status(500).json({error : error.message , success : false})
     }
 }
-module.exports = {createNotes,createNotesBulk , getNotes }  
+
+const getNotesById = async (req , res)=>{
+    try{
+        const id = req.params.id;
+        const note = await Note.find({_id : id});
+        res.status(200).json({"data" : note , success : true})
+    }
+     catch(error){
+        res.status(500).json({error : error.message , success : false})
+    }
+}
+module.exports = {createNotes,createNotesBulk , getNotes , getNotesById }  
