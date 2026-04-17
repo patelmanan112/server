@@ -5,7 +5,7 @@ app.use(express.json());
 
 // Routes 
 
-app.use("/api" , NoteRouter)
+app.use("/api/notes" , NoteRouter)
 
 
 module.exports = app;

@@ -1,6 +1,6 @@
 const express = require("express");
-const createNotes = require("../controllers/note.controller");
- // 
+const {createNotes ,createNotesBulk}= require("../controllers/note.controller");
+
 const NoteRouter = express.Router();
 
 NoteRouter.get("/test" , (req , res)=>{
@@ -8,5 +8,6 @@ res.status(200).json({"message" : "Hello your route not/test is implemented"})
 
 }) 
 
-NoteRouter.post("/create" , createNotes);
+NoteRouter.post("/" , createNotes);
+NoteRouter.post("/bulk" ,createNotesBulk )
 module.exports = NoteRouter;

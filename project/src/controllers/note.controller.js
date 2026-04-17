@@ -22,5 +22,16 @@ const createNotes = async (req , res)=>{
         res.status(500).json({error : error.message , success : false})
     }
 }
+const createNotesBulk = async (req , res)=>{
+    try{
+        const note = req.body;
+        const notes = await Note.insertMany(note);
 
-module.exports = createNotes;
+        res.status(201).json({updated : "Your note is added" , success : true , data : note})
+    }
+    catch(error){
+        res.status(500).json({error : error.message})
+    }
+
+}
+module.exports = {createNotes,createNotesBulk }  
