@@ -90,4 +90,14 @@ const deleteNoteById  = async(req , res)=>{
         res.status(500).json({error : error.message , success : false})
     }
 }
-module.exports = {createNotes,createNotesBulk , getNotes , getNotesById ,  putNotesId , patchNotesId ,deleteNoteById}  
+const deleteMany = async(req, res)=>{
+    try{
+        const ids = req.body.ids;
+        const note = await Note.deleteMany({_id : {$in : ids}});
+        res.status(200).json({"data" : "all the given notes has been deleted"})
+    }
+    catch(error){
+         res.status(500).json({error : error.message , success : false})
+    }
+}
+module.exports = {createNotes,createNotesBulk , getNotes , getNotesById , deleteMany, putNotesId , patchNotesId ,deleteNoteById}  
