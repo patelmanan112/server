@@ -67,4 +67,16 @@ const putNotesId = async(req , res)=>{
           res.status(500).json({error : error.message , success : false})
     }
 }
-module.exports = {createNotes,createNotesBulk , getNotes , getNotesById ,  putNotesId}  
+
+const patchNotesId = async (req , res)=>{
+    try{
+        const id = req.params.id;
+        const notes = req.body;
+        const note = await Note.findByIdAndUpdate(id , notes);
+        res.status(200).json({"data" : notes , success : true})
+    }
+    catch(error){
+        res.status(500).json({error : error.message , success : false})
+    }
+}
+module.exports = {createNotes,createNotesBulk , getNotes , getNotesById ,  putNotesId , patchNotesId}  

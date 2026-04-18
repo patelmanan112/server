@@ -1,5 +1,5 @@
 const express = require("express");
-const {createNotes ,createNotesBulk, getNotes, getNotesById, putNotesId}= require("../controllers/note.controller");
+const {createNotes ,createNotesBulk, getNotes, getNotesById, putNotesId , patchNotesId}= require("../controllers/note.controller");
 
 const NoteRouter = express.Router();
 
@@ -13,4 +13,5 @@ NoteRouter.post("/bulk" ,createNotesBulk )
 NoteRouter.get("/" , getNotes)
 NoteRouter.get("/:id" , getNotesById)
 NoteRouter.put("/:id" , putNotesId)
+NoteRouter.patch("/:id" , putNotesId)
 module.exports = NoteRouter;
