@@ -79,4 +79,15 @@ const patchNotesId = async (req , res)=>{
         res.status(500).json({error : error.message , success : false})
     }
 }
-module.exports = {createNotes,createNotesBulk , getNotes , getNotesById ,  putNotesId , patchNotesId}  
+
+const deleteNoteById  = async(req , res)=>{
+    try{
+        const id = req.params.id;
+        const note = await Note.findByIdAndDelete(id);
+        res.status(200).json({"data" : "deleted succesfully" , success : true})
+    }
+       catch(error){
+        res.status(500).json({error : error.message , success : false})
+    }
+}
+module.exports = {createNotes,createNotesBulk , getNotes , getNotesById ,  putNotesId , patchNotesId ,deleteNoteById}  
